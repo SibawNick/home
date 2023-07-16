@@ -6,7 +6,7 @@
     <title>Sibaw's home page</title>
 
     <!-- links -->
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
     <div class="main-container">
@@ -14,7 +14,9 @@
         <h1>Pentesting Web checklist</h1>
       </header>
       <div class="list-content">
-        <h3 class="level2">Recon phase</h3>
+        <a href="recon.html">
+          <h3 class="level2">Recon phase</h3>
+        </a>
         <ul>
           <li>Large: a whole company with multiple domains</li>
           <li>Medium: a single domain</li>
@@ -258,133 +260,180 @@
         </ul>
         <h3 class="level2">Forgot/reset password</h3>
         <ul>
-            <li>Invalidate session on Logout and Password reset</li>
-            <li>Uniqueness of forget password reset link/code</li>
-            <li>Reset links expiration time</li>
-            <li>Find user id or other sensitive fields in reset link and tamper them</li>
-            <li>Request 2 reset passwords links and use the older</li>
-            <li>Check if many requests have sequential tokens</li>
-            <li>Use username@burp\_collab.net and analyze the callback</li>
-            <li>Host header injection for token leakage</li>
-            <li>Add X-Forwarded-Host: evil.com to receive the reset link with evil.com</li>
-            <li>Email crafting like victim@gmail.com@target.com</li>
-            <li>IDOR in reset link</li>
-            <li>Capture reset token and use with other email/userID</li>
-            <li>No TLD in email parameter</li>
-            <li>User carbon copy email=victim@mail.com%0a%0dcc:hacker@mail.com</li>
-            <li>Long password (>200) leads to DoS</li>
-            <li>No rate limit, capture request and send over 1000 times</li>
-            <li>Check encryption in reset password token</li>
-            <li>Token leak in referer header</li>
-            <li>Append second email param and value</li>
-            <li>Understand how token is generated (timestamp, username, birthdate,...)</li>
-            <li>Response manipulation</li>
+          <li>Invalidate session on Logout and Password reset</li>
+          <li>Uniqueness of forget password reset link/code</li>
+          <li>Reset links expiration time</li>
+          <li>
+            Find user id or other sensitive fields in reset link and tamper them
+          </li>
+          <li>Request 2 reset passwords links and use the older</li>
+          <li>Check if many requests have sequential tokens</li>
+          <li>Use username@burp\_collab.net and analyze the callback</li>
+          <li>Host header injection for token leakage</li>
+          <li>
+            Add X-Forwarded-Host: evil.com to receive the reset link with
+            evil.com
+          </li>
+          <li>Email crafting like victim@gmail.com@target.com</li>
+          <li>IDOR in reset link</li>
+          <li>Capture reset token and use with other email/userID</li>
+          <li>No TLD in email parameter</li>
+          <li>
+            User carbon copy email=victim@mail.com%0a%0dcc:hacker@mail.com
+          </li>
+          <li>Long password (>200) leads to DoS</li>
+          <li>No rate limit, capture request and send over 1000 times</li>
+          <li>Check encryption in reset password token</li>
+          <li>Token leak in referer header</li>
+          <li>Append second email param and value</li>
+          <li>
+            Understand how token is generated (timestamp, username,
+            birthdate,...)
+          </li>
+          <li>Response manipulation</li>
         </ul>
         <h3 class="level2">Input handling</h3>
         <ul>
-            <li>Fuzz all request parameters (if got user, add headers to fuzzer)</li>
-            <li>Identify all reflected data</li>
-            <li>Reflected XSS</li>
-            <li>HTTP header injection in GET & POST (X Forwarded Host)</li>
-            <li>RCE via Referer Header</li>
-            <li>SQL injection via User-Agent Header</li>
-            <li>Arbitrary redirection</li>
-            <li>Stored attacks</li>
-            <li>OS command injection</li>
-            <li>Path traversal, LFI and RFI</li>
-            <li>Script injection</li>
-            <li>File inclusion</li>
-            <li>SMTP injection</li>
-            <li>Native software flaws (buffer overflow, integer bugs, format strings)</li>
-            <li>SOAP injection</li>
-            <li>LDAP injection</li>
-            <li>SSI Injection</li>
-            <li>XPath injection</li>
-            <li>XXE in any request, change content-type to text/xml</li>
-            <li>Stored XSS</li>
-            <li>SQL injection with ' and '--+-</li>
-            <li>NoSQL injection</li>
-            <li>HTTP Request Smuggling</li>
-            <li>Open redirect</li>
-            <li>Code Injection (\<h1>six2dez\</h1> on stored param)</li>
-            <li>SSRF in previously discovered open ports</li>
-            <li>xmlrpc.php DOS and user enumeration</li>
-            <li></li>
-            <li>HTTP dangerous methods OPTIONS PUT DELETE</li>
-            <li>Try to discover hidden parameters (arjun or parameth)</li>
-            <li>Insecure deserialization</li>
+          <li>
+            Fuzz all request parameters (if got user, add headers to fuzzer)
+          </li>
+          <li>Identify all reflected data</li>
+          <li>Reflected XSS</li>
+          <li>HTTP header injection in GET & POST (X Forwarded Host)</li>
+          <li>RCE via Referer Header</li>
+          <li>SQL injection via User-Agent Header</li>
+          <li>Arbitrary redirection</li>
+          <li>Stored attacks</li>
+          <li>OS command injection</li>
+          <li>Path traversal, LFI and RFI</li>
+          <li>Script injection</li>
+          <li>File inclusion</li>
+          <li>SMTP injection</li>
+          <li>
+            Native software flaws (buffer overflow, integer bugs, format
+            strings)
+          </li>
+          <li>SOAP injection</li>
+          <li>LDAP injection</li>
+          <li>SSI Injection</li>
+          <li>XPath injection</li>
+          <li>XXE in any request, change content-type to text/xml</li>
+          <li>Stored XSS</li>
+          <li>SQL injection with ' and '--+-</li>
+          <li>NoSQL injection</li>
+          <li>HTTP Request Smuggling</li>
+          <li>Open redirect</li>
+          <li>
+            Code Injection (\
+            <h1>six2dez\</h1>
+            on stored param)
+          </li>
+          <li>SSRF in previously discovered open ports</li>
+          <li>xmlrpc.php DOS and user enumeration</li>
+          <li></li>
+          <li>HTTP dangerous methods OPTIONS PUT DELETE</li>
+          <li>Try to discover hidden parameters (arjun or parameth)</li>
+          <li>Insecure deserialization</li>
         </ul>
         <h3 class="level2">Error handling</h3>
         <ul>
-            <li>Access custom pages like /whatever\_fake.php (.aspx,.html,.etc)</li>
-            <li>Add multiple parameters in GET and POST request using different values</li>
-            <li>Add "\[]", "]]", and "\[\[" in cookie values and parameter values to create errors</li>
-            <li>Generate error by giving input as "/\~randomthing/%s" at the end of URL</li>
-            <li>Use Burp Intruder "Fuzzing Full" List in input to generate error codes</li>
-            <li>Try different HTTP Verbs like PATCH, DEBUG or wrong like FAKE</li>
+          <li>
+            Access custom pages like /whatever\_fake.php (.aspx,.html,.etc)
+          </li>
+          <li>
+            Add multiple parameters in GET and POST request using different
+            values
+          </li>
+          <li>
+            Add "\[]", "]]", and "\[\[" in cookie values and parameter values to
+            create errors
+          </li>
+          <li>
+            Generate error by giving input as "/\~randomthing/%s" at the end of
+            URL
+          </li>
+          <li>
+            Use Burp Intruder "Fuzzing Full" List in input to generate error
+            codes
+          </li>
+          <li>Try different HTTP Verbs like PATCH, DEBUG or wrong like FAKE</li>
         </ul>
         <h3 class="level2">Application Logic</h3>
         <ul>
-            <li>Identify the logic attack surface</li>
-            <li>Test transmission of data via the client</li>
-            <li>Test for reliance on client-side input validation</li>
-            <li>Thick-client components (Java, ActiveX, Flash)</li>
-            <li>Multi-stage processes for logic flaws</li>
-            <li>Handling of incomplete input</li>
-            <li>Trust boundaries</li>
-            <li>Transaction logic</li>
-            <li>Implemented CAPTCHA in email forms to avoid flooding</li>
-            <li>Tamper product id, price or quantity value in any action (add, modify, delete, place, pay...)</li>
-            <li>Tamper gift or discount codes</li>
-            <li>Reuse gift codes</li>
-            <li>Try parameter pollution to use gift code two times in same request</li>
-            <li>Try stored XSS in non-limited fields like address</li>
-            <li>Check in payment form if CVV and card number is in clear text or masked</li>
-            <li>Check if is processed by the app itself or sent to 3rd parts</li>
-            <li>IDOR from other users details ticket/cart/shipment</li>
-            <li>Check for test credit card number allowed like 4111 1111 1111 1111 (sample1 sample2)</li>
-            <li>Check PRINT or PDF creation for IDOR</li>
-            <li>Check unsubscribe button with user enumeration</li>
-            <li>Parameter pollution on social media sharing links</li>
-            <li>Change POST sensitive requests to GET</li>
+          <li>Identify the logic attack surface</li>
+          <li>Test transmission of data via the client</li>
+          <li>Test for reliance on client-side input validation</li>
+          <li>Thick-client components (Java, ActiveX, Flash)</li>
+          <li>Multi-stage processes for logic flaws</li>
+          <li>Handling of incomplete input</li>
+          <li>Trust boundaries</li>
+          <li>Transaction logic</li>
+          <li>Implemented CAPTCHA in email forms to avoid flooding</li>
+          <li>
+            Tamper product id, price or quantity value in any action (add,
+            modify, delete, place, pay...)
+          </li>
+          <li>Tamper gift or discount codes</li>
+          <li>Reuse gift codes</li>
+          <li>
+            Try parameter pollution to use gift code two times in same request
+          </li>
+          <li>Try stored XSS in non-limited fields like address</li>
+          <li>
+            Check in payment form if CVV and card number is in clear text or
+            masked
+          </li>
+          <li>Check if is processed by the app itself or sent to 3rd parts</li>
+          <li>IDOR from other users details ticket/cart/shipment</li>
+          <li>
+            Check for test credit card number allowed like 4111 1111 1111 1111
+            (sample1 sample2)
+          </li>
+          <li>Check PRINT or PDF creation for IDOR</li>
+          <li>Check unsubscribe button with user enumeration</li>
+          <li>Parameter pollution on social media sharing links</li>
+          <li>Change POST sensitive requests to GET</li>
         </ul>
         <h2 class="level1">Other checks</h2>
         <h3 class="level2">Infrastructure</h3>
         <ul>
-            <li>Segregation in shared infrastructures</li>
-            <li>Segregation between ASP-hosted applications</li>
-            <li>Web server vulnerabilities</li>
-            <li>Dangerous HTTP methods</li>
-            <li>Proxy functionality</li>
-            <li>Virtual hosting misconfiguration (VHostScan)</li>
-            <li>Check for internal numeric IP's in request</li>
-            <li>Check for external numeric IP's and resolve it</li>
-            <li>Test cloud storage</li>
-            <li>Check the existence of alternative channels (www.web.com vs m.web.com)</li>
+          <li>Segregation in shared infrastructures</li>
+          <li>Segregation between ASP-hosted applications</li>
+          <li>Web server vulnerabilities</li>
+          <li>Dangerous HTTP methods</li>
+          <li>Proxy functionality</li>
+          <li>Virtual hosting misconfiguration (VHostScan)</li>
+          <li>Check for internal numeric IP's in request</li>
+          <li>Check for external numeric IP's and resolve it</li>
+          <li>Test cloud storage</li>
+          <li>
+            Check the existence of alternative channels (www.web.com vs
+            m.web.com)
+          </li>
         </ul>
         <h3 class="level2">CAPTCHA</h3>
         <ul>
-            <li>Send old captcha value.</li>
-            <li>Send old captcha value with old session ID.</li>
-            <li>Request captcha absolute path like www.url.com/captcha/1.png</li>
-            <li>Remove captcha with any adblocker and request again</li>
-            <li>Bypass with OCR tool (easy one)</li>
-            <li>Change from POST to GET</li>
-            <li>Remove captcha parameter</li>
-            <li>Convert JSON request to normal</li>
-            <li>Try header injections</li>
+          <li>Send old captcha value.</li>
+          <li>Send old captcha value with old session ID.</li>
+          <li>Request captcha absolute path like www.url.com/captcha/1.png</li>
+          <li>Remove captcha with any adblocker and request again</li>
+          <li>Bypass with OCR tool (easy one)</li>
+          <li>Change from POST to GET</li>
+          <li>Remove captcha parameter</li>
+          <li>Convert JSON request to normal</li>
+          <li>Try header injections</li>
         </ul>
         <h3 class="level2">Security Headers</h3>
         <ul>
-            <li>X-XSS-Protection</li>
-            <li>Strict-Transport-Security</li>
-            <li>Content-Security-Policy</li>
-            <li>Public-Key-Pins</li>
-            <li>X-Frame-Options</li>
-            <li>X-Content-Type-Options</li>
-            <li>Referer-Policy</li>
-            <li>Cache-Control</li>
-            <li>Expires</li>
+          <li>X-XSS-Protection</li>
+          <li>Strict-Transport-Security</li>
+          <li>Content-Security-Policy</li>
+          <li>Public-Key-Pins</li>
+          <li>X-Frame-Options</li>
+          <li>X-Content-Type-Options</li>
+          <li>Referer-Policy</li>
+          <li>Cache-Control</li>
+          <li>Expires</li>
         </ul>
       </div>
     </div>

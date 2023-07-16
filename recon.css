@@ -39,15 +39,19 @@ h1 {
 }
 
 h2 {
-    color: rgb(84, 8, 20);
+  color: rgb(84, 8, 20);
 }
 
 h3 {
-    color: rgb(53, 40, 98);
-    border-bottom: 1px solid lightblue;
-    text-align: left;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+  color: rgb(53, 40, 98);
+  border-bottom: 1px solid lightblue;
+  text-align: left;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+h3:hover {
+    color: #000;
 }
 
 .content {
@@ -87,4 +91,5 @@ a {
 
 a:hover {
   font-size: 1.41rem;
+  color: aqua;
 }

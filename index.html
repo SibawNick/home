@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- links -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <h1>Pentesting Web checklist</h1>
+      </header>
+      <div class="list-content">
+        <h3 class="level2">Recon phase</h3>
+        <ul>
+          <li>Large: a whole company with multiple domains</li>
+          <li>Medium: a single domain</li>
+          <li>Small: a single website</li>
+        </ul>
+        <h3 class="level2">Large scope</h3>
+        <ul>
+          <li>
+            Get [ASN] for IP ranges ([amass], [asnlookup], [metabigor], [bgp])
+          </li>
+          <li>Review latest acquisitions</li>
+          <li>Get relationships by registrants (viewdns)</li>
+          <li>Go to medium scope for each domain</li>
+        </ul>
+        <h3 class="level2">Medium scope</h3>
+        <ul>
+          <li>
+            Enumerate subdomains (amass or subfinder with all available API
+            keys)
+          </li>
+          <li>Subdomain bruteforce (puredns with wordlist)</li>
+          <li>Permute subdomains (gotator or ripgen with wordlist)</li>
+          <li>Identify alive subdomains (httpx)</li>
+          <li>Subdomain takeovers (nuclei-takeovers)</li>
+          <li>Check for cloud assets (cloudenum)</li>
+          <li>Shodan search</li>
+          <li>Transfer zone</li>
+          <li>Subdomains recursive search</li>
+          <li>Take screenshots (gowitness, webscreenshot, aquatone)</li>
+        </ul>
+        <h3 class="level2">Small scope</h3>
+        <ul>
+          <li>Identify web server, technologies and database (httpx)</li>
+          <li>
+            Try to locate /robots.txt , /crossdomain.xml /clientaccesspolicy.xml
+            /sitemap.xml and /.well-known/
+          </li>
+          <li>Review comments on source code (Burp Engagement Tools)</li>
+          <li>Directory enumeration</li>
+          <li>Web fuzzing (ffuf and wordlist)</li>
+          <li>Find leaked ids, emails (pwndb)</li>
+          <li>Identify WAF (whatwaf, wafw00f)</li>
+          <li>Google dorking</li>
+          <li>GitHub dorking/Github tools (githound, gitdorks\_go)</li>
+          <li>Get urls (gau , waybackurls, gospider)</li>
+          <li>Check potential vulnerable urls (gf-patterns)</li>
+          <li>Automatic XSS finder (dalfox)</li>
+          <li>Locate admin and login panel</li>
+          <li>Broken link hijacking (blc)</li>
+          <li>Get all JS files (subjs, xnLinkFinder)</li>
+          <li>JS hardcoded APIs and secrets (nuclei-tokens)</li>
+          <li>JS analysis (subjs, JSA, xnLinkFinder, getjswords)</li>
+          <li>Run automated scanner (nuclei)</li>
+          <li>Test CORS (CORScanner, corsy)</li>
+        </ul>
+        <h3 class="level2">Network</h3>
+        <ul>
+          <li>Check ICMP packets allowed</li>
+          <li>Check DMARC/SPF policies (spoofcheck)</li>
+          <li>Open ports with Shodan</li>
+          <li>Port scan to all ports</li>
+          <li>Check UDP ports (udp-proto-scanner or nmap)</li>
+          <li>Test SSL (testssl)</li>
+          <li>
+            If got creds, try password spraying for all the services discovered
+          </li>
+        </ul>
+        <h3 class="level2">Preparation</h3>
+        <ul>
+          <li>Study site structure</li>
+          <li>Make a list with all possible test cases</li>
+          <li>Understand the business area and what their customer needs</li>
+          <li>
+            Get a list of every asset (all\_subdomains.txt,
+            live\_subdomains.txt, waybackurls.txt, hidden\_directories.txt,
+            nmap\_results.txt, GitHub\_search.txt, altdns\_subdomain.txt,
+            vulnerable\_links.txt, js\_files.txt)
+          </li>
+        </ul>
+        <h2 class="level1">User management</h2>
+        <h3 class="level2">Registration</h3>
+        <ul>
+          <li>
+            Duplicate registration (try with uppercase, +1@..., dots in name,
+            etc)
+          </li>
+          <li>Overwrite existing user (existing user takeover)</li>
+          <li>Username uniqueness</li>
+          <li>
+            Weak password policy (user=password,
+            password=123456,111111,abcabc,qwerty12)
+          </li>
+          <li>
+            Insufficient email verification process (also my%00email@mail.com
+            for account tko)
+          </li>
+          <li>
+            Weak registration implementation or allows disposable email
+            addresses
+          </li>
+          <li>
+            Fuzz after user creation to check if any folder have been
+            overwritten or created with your profile name
+          </li>
+          <li>Add only spaces in password</li>
+          <li>Long password (>200) leads to DoS</li>
+          <li>
+            Corrupt authentication and session defects: Sign up, don't verify,
+            request change password, change, check if account is active.
+          </li>
+          <li>
+            Try to re-register repeating same request with same password and
+            different password too
+          </li>
+          <li>
+            If JSON request, add comma
+            {“email”:“victim@mail.com”,”hacker@mail.com”,“token”:”xxxxxxxxxx”}
+          </li>
+          <li>Lack of confirmation -> try to register with company email.</li>
+          <li>Check OAuth with social media registration</li>
+          <li>Check state parameter on social media registration</li>
+          <li>Try to capture integration url leading integration takeover</li>
+          <li>Check redirections in register page after login</li>
+          <li>Rate limit on account creation</li>
+          <li>XSS on name or email</li>
+        </ul>
+        <h3 class="level2">Authentication</h3>
+        <ul>
+          <li>Username enumeration</li>
+          <li>Resilience to password guessing</li>
+          <li>Account recovery function</li>
+          <li>"Remember me" function</li>
+          <li>Impersonation function</li>
+          <li>Unsafe distribution of credentials</li>
+          <li>Fail-open conditions</li>
+          <li>Multi-stage mechanisms</li>
+          <li>SQL Injections</li>
+          <li>Auto-complete testing</li>
+          <li>
+            Lack of password confirmation on change email, password or 2FA (try
+            change response)
+          </li>
+          <li>Weak login function over HTTP and HTTPS if both are available</li>
+          <li>User account lockout mechanism on brute force attack</li>
+          <li>Check for password wordlist (cewl and burp-goldenNuggets)</li>
+          <li>Test 0auth login functionality for Open Redirection</li>
+          <li>Test response tampering in SAML authentication</li>
+          <li>In OTP check guessable codes and race conditions</li>
+          <li>OTP, check response manipulation for bypass</li>
+          <li>OTP, try bruteforce</li>
+          <li>If JWT, check common flaws</li>
+          <li>Browser cache weakness (eg Pragma, Expires, Max-age)</li>
+          <li>
+            After register, logout, clean cache, go to home page and paste your
+            profile url in browser, check for "login?next=accounts/profile" for
+            open redirect or XSS with "/login?next=javascript:alert(1);//"
+          </li>
+          <li>Try login with common credentials</li>
+        </ul>
+        <h3 class="level2">Session</h3>
+        <ul>
+          <li>Session handling</li>
+          <li>Test tokens for meaning</li>
+          <li>Test tokens for predictability</li>
+          <li>Insecure transmission of tokens</li>
+          <li>Disclosure of tokens in logs</li>
+          <li>Mapping of tokens to sessions</li>
+          <li>Session termination</li>
+          <li>Session fixation</li>
+          <li>Cross-site request forgery</li>
+          <li>Cookie scope</li>
+          <li>Decode Cookie (Base64, hex, URL etc.)</li>
+          <li>Cookie expiration time</li>
+          <li>Check HTTPOnly and Secure flags</li>
+          <li>
+            Use same cookie from a different effective IP address or system
+          </li>
+          <li>Access controls</li>
+          <li>Effectiveness of controls using multiple accounts</li>
+          <li>
+            Insecure access control methods (request parameters, Referer header,
+            etc)
+          </li>
+          <li>Check for concurrent login through different machine/IP</li>
+          <li>Bypass AntiCSRF tokens</li>
+          <li>Weak generated security questions</li>
+          <li>Path traversal on cookies</li>
+          <li>Reuse cookie after session closed</li>
+          <li>
+            Logout and click browser "go back" function (Alt + Left arrow)
+          </li>
+          <li>
+            2 instances open, 1st change or reset password, refresh 2nd instance
+          </li>
+          <li>
+            With privileged user perform privileged actions, try to repeat with
+            unprivileged user cookie.
+          </li>
+        </ul>
+        <h3 class="level2">Profile/Account details</h3>
+        <ul>
+          <li>
+            Find parameter with user id and try to tamper in order to get the
+            details of other users
+          </li>
+          <li>
+            Create a list of features that are pertaining to a user account only
+            and try CSRF
+          </li>
+          <li>
+            Change email id and update with any existing email id. Check if its
+            getting validated on server or not.
+          </li>
+          <li>
+            Check any new email confirmation link and what if user doesn't
+            confirm.
+          </li>
+          <li>
+            File upload: eicar, No Size Limit, File extension, Filter Bypass,
+            burp extension, RCE
+          </li>
+          <li>CSV import/export: Command Injection, XSS, macro injection</li>
+          <li>
+            Check profile picture URL and find email id/user info or EXIF
+            Geolocation Data
+          </li>
+          <li>Imagetragick in picture profile upload</li>
+          <li>Metadata of all downloadable files (Geolocation, usernames)</li>
+          <li>
+            Account deletion option and try to reactivate with "Forgot password"
+            feature
+          </li>
+          <li>
+            Try bruteforce enumeration when change any user unique parameter.
+          </li>
+          <li>
+            Check application request re-authentication for sensitive operations
+          </li>
+          <li>Try parameter pollution to add two values of same field</li>
+          <li>Check different roles policy</li>
+        </ul>
+        <h3 class="level2">Forgot/reset password</h3>
+        <ul>
+            <li>Invalidate session on Logout and Password reset</li>
+            <li>Uniqueness of forget password reset link/code</li>
+            <li>Reset links expiration time</li>
+            <li>Find user id or other sensitive fields in reset link and tamper them</li>
+            <li>Request 2 reset passwords links and use the older</li>
+            <li>Check if many requests have sequential tokens</li>
+            <li>Use username@burp\_collab.net and analyze the callback</li>
+            <li>Host header injection for token leakage</li>
+            <li>Add X-Forwarded-Host: evil.com to receive the reset link with evil.com</li>
+            <li>Email crafting like victim@gmail.com@target.com</li>
+            <li>IDOR in reset link</li>
+            <li>Capture reset token and use with other email/userID</li>
+            <li>No TLD in email parameter</li>
+            <li>User carbon copy email=victim@mail.com%0a%0dcc:hacker@mail.com</li>
+            <li>Long password (>200) leads to DoS</li>
+            <li>No rate limit, capture request and send over 1000 times</li>
+            <li>Check encryption in reset password token</li>
+            <li>Token leak in referer header</li>
+            <li>Append second email param and value</li>
+            <li>Understand how token is generated (timestamp, username, birthdate,...)</li>
+            <li>Response manipulation</li>
+        </ul>
+        <h3 class="level2">Input handling</h3>
+        <ul>
+            <li>Fuzz all request parameters (if got user, add headers to fuzzer)</li>
+            <li>Identify all reflected data</li>
+            <li>Reflected XSS</li>
+            <li>HTTP header injection in GET & POST (X Forwarded Host)</li>
+            <li>RCE via Referer Header</li>
+            <li>SQL injection via User-Agent Header</li>
+            <li>Arbitrary redirection</li>
+            <li>Stored attacks</li>
+            <li>OS command injection</li>
+            <li>Path traversal, LFI and RFI</li>
+            <li>Script injection</li>
+            <li>File inclusion</li>
+            <li>SMTP injection</li>
+            <li>Native software flaws (buffer overflow, integer bugs, format strings)</li>
+            <li>SOAP injection</li>
+            <li>LDAP injection</li>
+            <li>SSI Injection</li>
+            <li>XPath injection</li>
+            <li>XXE in any request, change content-type to text/xml</li>
+            <li>Stored XSS</li>
+            <li>SQL injection with ' and '--+-</li>
+            <li>NoSQL injection</li>
+            <li>HTTP Request Smuggling</li>
+            <li>Open redirect</li>
+            <li>Code Injection (\<h1>six2dez\</h1> on stored param)</li>
+            <li>SSRF in previously discovered open ports</li>
+            <li>xmlrpc.php DOS and user enumeration</li>
+            <li></li>
+            <li>HTTP dangerous methods OPTIONS PUT DELETE</li>
+            <li>Try to discover hidden parameters (arjun or parameth)</li>
+            <li>Insecure deserialization</li>
+        </ul>
+        <h3 class="level2">Error handling</h3>
+        <ul>
+            <li>Access custom pages like /whatever\_fake.php (.aspx,.html,.etc)</li>
+            <li>Add multiple parameters in GET and POST request using different values</li>
+            <li>Add "\[]", "]]", and "\[\[" in cookie values and parameter values to create errors</li>
+            <li>Generate error by giving input as "/\~randomthing/%s" at the end of URL</li>
+            <li>Use Burp Intruder "Fuzzing Full" List in input to generate error codes</li>
+            <li>Try different HTTP Verbs like PATCH, DEBUG or wrong like FAKE</li>
+        </ul>
+        <h3 class="level2">Application Logic</h3>
+        <ul>
+            <li>Identify the logic attack surface</li>
+            <li>Test transmission of data via the client</li>
+            <li>Test for reliance on client-side input validation</li>
+            <li>Thick-client components (Java, ActiveX, Flash)</li>
+            <li>Multi-stage processes for logic flaws</li>
+            <li>Handling of incomplete input</li>
+            <li>Trust boundaries</li>
+            <li>Transaction logic</li>
+            <li>Implemented CAPTCHA in email forms to avoid flooding</li>
+            <li>Tamper product id, price or quantity value in any action (add, modify, delete, place, pay...)</li>
+            <li>Tamper gift or discount codes</li>
+            <li>Reuse gift codes</li>
+            <li>Try parameter pollution to use gift code two times in same request</li>
+            <li>Try stored XSS in non-limited fields like address</li>
+            <li>Check in payment form if CVV and card number is in clear text or masked</li>
+            <li>Check if is processed by the app itself or sent to 3rd parts</li>
+            <li>IDOR from other users details ticket/cart/shipment</li>
+            <li>Check for test credit card number allowed like 4111 1111 1111 1111 (sample1 sample2)</li>
+            <li>Check PRINT or PDF creation for IDOR</li>
+            <li>Check unsubscribe button with user enumeration</li>
+            <li>Parameter pollution on social media sharing links</li>
+            <li>Change POST sensitive requests to GET</li>
+        </ul>
+        <h2 class="level1">Other checks</h2>
+        <h3 class="level2">Infrastructure</h3>
+        <ul>
+            <li>Segregation in shared infrastructures</li>
+            <li>Segregation between ASP-hosted applications</li>
+            <li>Web server vulnerabilities</li>
+            <li>Dangerous HTTP methods</li>
+            <li>Proxy functionality</li>
+            <li>Virtual hosting misconfiguration (VHostScan)</li>
+            <li>Check for internal numeric IP's in request</li>
+            <li>Check for external numeric IP's and resolve it</li>
+            <li>Test cloud storage</li>
+            <li>Check the existence of alternative channels (www.web.com vs m.web.com)</li>
+        </ul>
+        <h3 class="level2">CAPTCHA</h3>
+        <ul>
+            <li>Send old captcha value.</li>
+            <li>Send old captcha value with old session ID.</li>
+            <li>Request captcha absolute path like www.url.com/captcha/1.png</li>
+            <li>Remove captcha with any adblocker and request again</li>
+            <li>Bypass with OCR tool (easy one)</li>
+            <li>Change from POST to GET</li>
+            <li>Remove captcha parameter</li>
+            <li>Convert JSON request to normal</li>
+            <li>Try header injections</li>
+        </ul>
+        <h3 class="level2">Security Headers</h3>
+        <ul>
+            <li>X-XSS-Protection</li>
+            <li>Strict-Transport-Security</li>
+            <li>Content-Security-Policy</li>
+            <li>Public-Key-Pins</li>
+            <li>X-Frame-Options</li>
+            <li>X-Content-Type-Options</li>
+            <li>Referer-Policy</li>
+            <li>Cache-Control</li>
+            <li>Expires</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

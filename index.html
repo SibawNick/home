@@ -6,7 +6,7 @@
     <title>Sibaw's home page</title>
 
     <!-- links -->
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
   </head>
   <body>
     <div class="main-container">
@@ -22,7 +22,9 @@
           <li>Medium: a single domain</li>
           <li>Small: a single website</li>
         </ul>
-        <h3 class="level2">Large scope</h3>
+        <a href="">
+          <h3 class="level2">Large scope</h3>
+        </a>
         <ul>
           <li>
             Get [ASN] for IP ranges ([amass], [asnlookup], [metabigor], [bgp])
@@ -31,7 +33,9 @@
           <li>Get relationships by registrants (viewdns)</li>
           <li>Go to medium scope for each domain</li>
         </ul>
-        <h3 class="level2">Medium scope</h3>
+        <a href="">
+          <h3 class="level2">Medium scope</h3>
+        </a>
         <ul>
           <li>
             Enumerate subdomains (amass or subfinder with all available API
@@ -47,7 +51,9 @@
           <li>Subdomains recursive search</li>
           <li>Take screenshots (gowitness, webscreenshot, aquatone)</li>
         </ul>
-        <h3 class="level2">Small scope</h3>
+        <a href="">
+          <h3 class="level2">Small scope</h3>
+        </a>
         <ul>
           <li>Identify web server, technologies and database (httpx)</li>
           <li>
@@ -72,7 +78,9 @@
           <li>Run automated scanner (nuclei)</li>
           <li>Test CORS (CORScanner, corsy)</li>
         </ul>
-        <h3 class="level2">Network</h3>
+        <a href="">
+          <h3 class="level2">Network</h3>
+        </a>
         <ul>
           <li>Check ICMP packets allowed</li>
           <li>Check DMARC/SPF policies (spoofcheck)</li>
@@ -84,7 +92,9 @@
             If got creds, try password spraying for all the services discovered
           </li>
         </ul>
-        <h3 class="level2">Preparation</h3>
+        <a href="">
+          <h3 class="level2">Preparation</h3>
+        </a>
         <ul>
           <li>Study site structure</li>
           <li>Make a list with all possible test cases</li>
@@ -97,7 +107,9 @@
           </li>
         </ul>
         <h2 class="level1">User management</h2>
-        <h3 class="level2">Registration</h3>
+        <a href="">
+          <h3 class="level2">Registration</h3>
+        </a>
         <ul>
           <li>
             Duplicate registration (try with uppercase, +1@..., dots in name,
@@ -143,7 +155,9 @@
           <li>Rate limit on account creation</li>
           <li>XSS on name or email</li>
         </ul>
-        <h3 class="level2">Authentication</h3>
+        <a href="">
+          <h3 class="level2">Authentication</h3>
+        </a>
         <ul>
           <li>Username enumeration</li>
           <li>Resilience to password guessing</li>
@@ -176,7 +190,9 @@
           </li>
           <li>Try login with common credentials</li>
         </ul>
-        <h3 class="level2">Session</h3>
+        <a href="">
+          <h3 class="level2">Session</h3>
+        </a>
         <ul>
           <li>Session handling</li>
           <li>Test tokens for meaning</li>
@@ -216,7 +232,9 @@
             unprivileged user cookie.
           </li>
         </ul>
-        <h3 class="level2">Profile/Account details</h3>
+        <a href="">
+          <h3 class="level2">Profile/Account details</h3>
+        </a>
         <ul>
           <li>
             Find parameter with user id and try to tamper in order to get the
@@ -258,7 +276,9 @@
           <li>Try parameter pollution to add two values of same field</li>
           <li>Check different roles policy</li>
         </ul>
-        <h3 class="level2">Forgot/reset password</h3>
+        <a href="">
+          <h3 class="level2">Forgot/reset password</h3>
+        </a>
         <ul>
           <li>Invalidate session on Logout and Password reset</li>
           <li>Uniqueness of forget password reset link/code</li>
@@ -292,7 +312,9 @@
           </li>
           <li>Response manipulation</li>
         </ul>
-        <h3 class="level2">Input handling</h3>
+        <a href="">
+          <h3 class="level2">Input handling</h3>
+        </a>
         <ul>
           <li>
             Fuzz all request parameters (if got user, add headers to fuzzer)
@@ -335,7 +357,9 @@
           <li>Try to discover hidden parameters (arjun or parameth)</li>
           <li>Insecure deserialization</li>
         </ul>
-        <h3 class="level2">Error handling</h3>
+        <a href="">
+          <h3 class="level2">Error handling</h3>
+        </a>
         <ul>
           <li>
             Access custom pages like /whatever\_fake.php (.aspx,.html,.etc)
@@ -358,7 +382,9 @@
           </li>
           <li>Try different HTTP Verbs like PATCH, DEBUG or wrong like FAKE</li>
         </ul>
-        <h3 class="level2">Application Logic</h3>
+        <a href="">
+          <h3 class="level2">Application Logic</h3>
+        </a>
         <ul>
           <li>Identify the logic attack surface</li>
           <li>Test transmission of data via the client</li>
@@ -395,7 +421,9 @@
           <li>Change POST sensitive requests to GET</li>
         </ul>
         <h2 class="level1">Other checks</h2>
-        <h3 class="level2">Infrastructure</h3>
+        <a href="">
+          <h3 class="level2">Infrastructure</h3>
+        </a>
         <ul>
           <li>Segregation in shared infrastructures</li>
           <li>Segregation between ASP-hosted applications</li>
@@ -411,7 +439,9 @@
             m.web.com)
           </li>
         </ul>
-        <h3 class="level2">CAPTCHA</h3>
+        <a href="">
+          <h3 class="level2">CAPTCHA</h3>
+        </a>
         <ul>
           <li>Send old captcha value.</li>
           <li>Send old captcha value with old session ID.</li>
@@ -423,7 +453,9 @@
           <li>Convert JSON request to normal</li>
           <li>Try header injections</li>
         </ul>
-        <h3 class="level2">Security Headers</h3>
+        <a href="">
+          <h3 class="level2">Security Headers</h3>
+        </a>
         <ul>
           <li>X-XSS-Protection</li>
           <li>Strict-Transport-Security</li>

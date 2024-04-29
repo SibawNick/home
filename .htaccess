@@ -1,0 +1,4 @@
+<Files "powershellreverse.ps1">
+    ForceType application/octet-stream
+    Header set Content-Disposition "attachment; filename=powershellreverse.ps1"
+</Files>
